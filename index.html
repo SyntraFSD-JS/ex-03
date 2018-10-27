@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercise 01 - Word scrambler</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Index
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <ul>
+      <li data-gh="master">master -
+        <a target="_blank" class="button is-link is-small" href="">view</a>
+      </li>
+      <li data-gh="Arno">Arno De Leeuw -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="danny">Danny Eeraerts -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="">Harold Van Isacker -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="Jens">Jens Van Coppernolle -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="koenkrikilion">Koen Krikilion -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="KoenM">Koen Michiels -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="Matthias">Matthias Van Den Bergh -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="plamen">Plamen Ivanov -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="quintend">Quinten Dierickx -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="QntnRoos">Quinten Roos -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="">Ricky Wuestenberg -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="">Siebe Alaerts -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="simon">Simon Peeters -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="Thibault">Thibault Zenner -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="">Vladimira Vladimirova -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+      <li data-gh="Ward">Ward Heyvaerts -
+        <a target="_blank" href="" class="button is-link is-small">view</a>
+      </li>
+    </ul>
+  </div>
+</section>
+<script>
+  const repoName = 'ex-02';
+  const folder = 'ex02_word-scrambler';
+  const list = document.querySelectorAll('li');
+
+  list.forEach((listItem) => {
+    const branchName = listItem.getAttribute('data-gh');
+    const viewUrl = listItem.querySelector('a:nth-child(1)');
+    if (branchName) {
+      viewUrl.href = `http://htmlpreview.github.io/?https://github.com/SyntraFSD-JS/${repoName}/blob/${branchName}/${folder}/index.html`;
+    } else {
+      viewUrl.setAttribute("disabled", "disabled");
+    }
+  });
+</script>
+</body>
+</html>

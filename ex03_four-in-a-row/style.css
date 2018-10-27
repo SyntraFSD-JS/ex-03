@@ -1,0 +1,107 @@
+body {
+  background-color: black;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#board {
+  background-color: cornflowerblue;
+  display: flex;
+  border: .7vmin solid #4e63a7;
+  box-shadow: inset 0 0 3px 2px #252f50;
+  position: relative;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 10vmin;
+  height: 10vmin;
+  position: relative;
+}
+
+.row:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6%;
+  bottom: 6%;
+  left: 6%;
+  right: 6%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: .4vmin solid #4e63a7;
+  box-shadow: inset 0 0 7px 3px #252f50, 0 0 3px 1px #252f50;
+}
+
+.row[data-color="empty"]:before {
+  background-color: black;
+}
+
+.row[data-color="red"]:before {
+  background: border-box no-repeat center/100% url("images/red_stone.png");
+}
+
+.row[data-color="yellow"]:before {
+  background: border-box no-repeat center/100% url("images/yellow_stone.png");
+}
+
+.row[data-winner="true"]:before{
+  -webkit-animation: winner 1s infinite;
+  -o-animation: winner 1s infinite;
+  animation: winner 1s infinite;
+}
+
+@-webkit-keyframes winner {
+  0%   { border-color: #4e63a7; }
+  25% { border-color: #81aae6; }
+  50% { border-color: #b5d8ff; }
+  75% { border-color: #81aae6; }
+  100%   { border-color: #4e63a7; }
+}
+
+.col {
+  position: relative;
+}
+
+.col:hover:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -15vmin;
+  left: 1vmin;
+  width: 9vmin;
+  height: 9vmin;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#board[data-turn="red"] .col:before {
+  background: border-box no-repeat center/100% url("images/red_stone.png");
+}
+
+#board[data-turn="yellow"] .col:before {
+  background: border-box no-repeat center/100% url("images/yellow_stone.png");
+}
+
+#winner-message-container{
+  color: white;
+  position: absolute;
+  bottom: -3rem;
+  width: 100%;
+  font-size: 1.8rem;
+  text-align: center;
+  font-family: sans-serif;
+}
