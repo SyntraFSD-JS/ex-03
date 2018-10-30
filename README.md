@@ -1,3 +1,5 @@
+# Deze oefening is nog niet helemaal klaar!! Ik stuur een bericht als jullie aan de slag kunnen.
+
 # Oefening 02
 ## Voorbereiding:
 Clone de git-repository uit github en maak je eigen branch.
