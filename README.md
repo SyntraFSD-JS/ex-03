@@ -17,7 +17,7 @@ Gebruik de terminal uit VSCode
 Push regelmatig de changes die je maakt naar github
 
 1. Commit je changes:
-   1. Druk `Ctrl-Shift-G` om de Dource Control tab te openen
+   1. Druk `Ctrl-Shift-G` om de Source Control tab te openen
    2. Geef een beschrijving van de changes die je deed en duw `Ctrl-Enter`
 2. Push je changes:
    1. Druk `Ctrl-Shift-P` om het Command Palette te openen
