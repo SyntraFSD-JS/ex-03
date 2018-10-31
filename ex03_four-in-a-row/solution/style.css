@@ -96,7 +96,7 @@ body {
   background: border-box no-repeat center/100% url("images/yellow_stone.png");
 }
 
-#message-container{
+#winner-message-container{
   color: white;
   position: absolute;
   bottom: -3rem;
