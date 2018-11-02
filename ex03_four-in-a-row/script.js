@@ -56,6 +56,9 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
+
+
+  
 }
 
 /**
