@@ -56,6 +56,9 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
+  const div = document.querySelectorAll(".row");
+  // let color = div.dataSet.color;
+  div.dataSet.color = "empty";
 }
 
 /**
