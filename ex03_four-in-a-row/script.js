@@ -70,6 +70,11 @@ function initBoard() {
  * not full
  */
 function initGameState() {
+  gameState.full = false;
+  gameState.turn = 'yellow';
+  gameState.winner = false;
+  gameState.winnerColor = null;
+  gameState.board = board;
 }
 
 /**
