@@ -130,6 +130,8 @@ function resetGame() {
  * @returns {Array}
  */
 function splitArrayInGroups(array) {
+
+  return array;
 }
 
 /**
