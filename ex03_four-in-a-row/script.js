@@ -48,6 +48,7 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
+
 }
 
 /**
@@ -56,6 +57,7 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
+  makeSquareObject('empty',false,gameSettings.columns,gameSettings.rows);
 }
 
 /**
@@ -130,6 +132,7 @@ function resetGame() {
  * @returns {Array}
  */
 function splitArrayInGroups(array) {
+
   let arrayRed=[];
   let arrayYellow=[];
   let arrayEmpty=[];
@@ -147,9 +150,9 @@ function splitArrayInGroups(array) {
     arrayEmpty.push=array[i];
     array.slice(array[i],1);  
     }
-
-    array=[arrayYellow,arrayRed,arrayEmpty];
   }
+
+  array=[arrayYellow,arrayRed,arrayEmpty];
   return array;
 }
 
