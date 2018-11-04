@@ -130,7 +130,26 @@ function resetGame() {
  * @returns {Array}
  */
 function splitArrayInGroups(array) {
+  let arrayRed=[];
+  let arrayYellow=[];
+  let arrayEmpty=[];
 
+  for(let i =0;i<array.length;i++){
+    if(array[i]=="yellow"){
+    arrayYellow.push=array[i];
+    array.slice(array[i],1);
+
+    } else if (array[i]=="red"){
+    arrayRed.push=array[i];
+    array.slice(array[i],1);
+
+    } else {
+    arrayEmpty.push=array[i];
+    array.slice(array[i],1);  
+    }
+
+    array=[arrayYellow,arrayRed,arrayEmpty];
+  }
   return array;
 }
 
