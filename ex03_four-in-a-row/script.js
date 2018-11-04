@@ -69,12 +69,19 @@ function initBoard() {
  * not full
  */
 function initGameState() {
+  gameState.turn="yellow";
+  gameState.winner=false;
+  gameState.winnerColor=null;
+  gameState.full=false;
+  //board stil to do
+
 }
 
 /**
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
+
   if (gameState.turn=="red"){
     gameState.turn="yellow";
   }else{
