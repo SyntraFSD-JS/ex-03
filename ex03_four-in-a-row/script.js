@@ -48,7 +48,7 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
-
+ 
 }
 
 /**
@@ -75,6 +75,11 @@ function initGameState() {
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
+  if (gameState.turn=="red"){
+    gameState.turn="yellow";
+  }else{
+    gameState.turn="red";
+  }
 }
 
 /**
