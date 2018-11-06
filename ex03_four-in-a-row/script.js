@@ -56,7 +56,12 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
-
+  let kleurVlakje = document.querySelectorAll(".row");
+    for (let i=0; i<gameSetting["columns"];i++){
+      for (let j=0; i<lgameSetting["row"];j++){
+        kleurVlakje[i][j].dataSet.color = colors["empty"];
+      }
+    }
 
   
 }
@@ -70,12 +75,23 @@ function initBoard() {
  * not full
  */
 function initGameState() {
+  initBoard();
+  htmlBoard.dataSet.turn = "yellow";
+  gameState.winner = false;
+  gameState.winnerColor = false;
+  gameState.full = false;
+  gameState.board = null;
 }
 
 /**
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
+  if (gameState.turn=="red"){
+    gameState.turn="yellow";
+  }else{
+     gameState.turn="red";
+   }
 }
 
 /**
@@ -100,6 +116,7 @@ function indexOfFirstEmptySquare(squareArray) {
  * (select corresponding element and change with element.dataSet.color and element.dataSet.winner)
  */
 function drawBoard() {
+  gamestate["board"]=
 }
 
 /**
