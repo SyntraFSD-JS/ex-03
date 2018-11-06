@@ -56,6 +56,13 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
+  var board = array();
+  for (var i=0; i<7; i++);{
+    var board[i] = new_Array()
+  for (var i=0; i<6; i++){
+    board[i].push;
+  }
+    return board;
 }
 
 /**
@@ -67,6 +74,9 @@ function initBoard() {
  * not full
  */
 function initGameState() {
+  data-turn = yellow;
+  initBoard();
+  
 }
 
 /**
