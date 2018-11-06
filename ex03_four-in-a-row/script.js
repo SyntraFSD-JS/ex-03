@@ -83,6 +83,11 @@ function initGameState() {
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
+  if (!data-turn = yellow) {
+    return data-turn = red;
+  } else {
+    return data-turn = yellow;
+  }
 }
 
 /**
