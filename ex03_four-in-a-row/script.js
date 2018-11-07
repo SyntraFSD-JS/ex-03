@@ -65,11 +65,12 @@ function initBoard() {
   //dubbele lus
   const rowCount= gameSettings.rows;
   const colCount=gameSettings.columns;
+  console.log(colCount)
   const board=[];
 
-  for(let i=0;i<rowCount;i++){
+  for(let i=0;i<colCount;i++){
     rowArray=[]
-    for(let j=0;j<colCount;j++){
+    for(let j=0;j<rowCount;j++){
     rowArray.push(makeSquareObject("empty", false, i, j));
     }
     board.push(rowArray);
