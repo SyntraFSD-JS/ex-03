@@ -48,7 +48,12 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
- 
+ return{
+   color:squareColor,
+   winner:squareWinner,
+   colIndex:parseInt(col),
+   rowIndex:parseInt(row)
+ }
 }
 
 /**
@@ -58,7 +63,19 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  */
 function initBoard() {
   //dubbele lus
-  makeSquareObject('empty',false,gameSettings.columns,gameSettings.rows);
+  const rowCount= gameSettings.rows;
+  const colCount=gameSettings.columns;
+  const board=[];
+
+  for(let i=0;i<rowCount;i++){
+    rowArray=[]
+    for(let j=0;j<colCount;j++){
+    rowArray.push(makeSquareObject("empty", false, i, j));
+    }
+    board.push(rowArray);
+  }
+  //console.log(board);
+  return board;
 }
 
 /**
@@ -74,8 +91,7 @@ function initGameState() {
   gameState.winner=false;
   gameState.winnerColor=null;
   gameState.full=false;
-  //board stil to do
-
+  gameState.board=initBoard();
 }
 
 /**
@@ -112,6 +128,24 @@ function indexOfFirstEmptySquare(squareArray) {
  * (select corresponding element and change with element.dataSet.color and element.dataSet.winner)
  */
 function drawBoard() {
+  //let array=[];
+  let rijen = document.querySelectorAll("div .col");
+  let minrow = gameSettings.rows-1;
+  
+
+  for(let i=0;i<gameSettings.columns;i++){
+    console.log(rijen[i]);
+    let velden = rijen[i].querySelectorAll("div .row");
+    for(let j=0;j<gameSettings.rows;j++){
+
+    console.log(velden[minrow-j]);
+    velden[minrow-j].dataset.color=gameState.board[i][j].color;  
+    velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
+    
+    }
+  }
+  let rij = document.querySelector("div .col");
+  let veld = rij.querySelector("div .row ");
 }
 
 /**
