@@ -57,6 +57,7 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
+  //dubbele lus
   makeSquareObject('empty',false,gameSettings.columns,gameSettings.rows);
 }
 
