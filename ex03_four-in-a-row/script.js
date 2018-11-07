@@ -65,14 +65,13 @@ function initBoard() {
   //dubbele lus
   const rowCount= gameSettings.rows;
   const colCount=gameSettings.columns;
-  console.log(colCount)
   const board=[];
 
   for(let i=0;i<colCount;i++){
     rowArray=[]
-    for(let j=0;j<rowCount;j++){
-    rowArray.push(makeSquareObject("empty", false, i, j));
-    }
+      for(let j=0;j<rowCount;j++){
+        rowArray.push(makeSquareObject(colors.empty, false, i, j));
+      }
     board.push(rowArray);
   }
   //console.log(board);
@@ -99,12 +98,14 @@ function initGameState() {
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
-
-  if (gameState.turn=="red"){
-    gameState.turn="yellow";
-  }else{
-    gameState.turn="red";
+  if (gameState.turn==colors.yellow)
+  {
+    gameState.turn=colors.red;
   }
+    else
+    {
+      gameState.turn=colors.yellow;
+    }
 }
 
 /**
@@ -132,21 +133,17 @@ function drawBoard() {
   //let array=[];
   let rijen = document.querySelectorAll("div .col");
   let minrow = gameSettings.rows-1;
-  
 
   for(let i=0;i<gameSettings.columns;i++){
-    console.log(rijen[i]);
+    //console.log(rijen[i]);
     let velden = rijen[i].querySelectorAll("div .row");
-    for(let j=0;j<gameSettings.rows;j++){
-
-    console.log(velden[minrow-j]);
-    velden[minrow-j].dataset.color=gameState.board[i][j].color;  
-    velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
     
-    }
+      for(let j=0;j<gameSettings.rows;j++){
+        //console.log(velden[minrow-j]);
+        velden[minrow-j].dataset.color=gameState.board[i][j].color;  
+        velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
+      }
   }
-  let rij = document.querySelector("div .col");
-  let veld = rij.querySelector("div .row ");
 }
 
 /**
@@ -154,6 +151,11 @@ function drawBoard() {
  * (htmlBoard is already defined)
  */
 function drawTurn() {
+  let turn = document.querySelector("#board");
+  turn.dataset.turn=gameState.turn;
+  //console.log(turn.dataset.turn);
+  //console.log(gameState.turn);
+   
 }
 
 /**
@@ -162,8 +164,38 @@ function drawTurn() {
  * (messageContainer is already defined)
  */
 function drawMessage() {
-}
+  let messageContainer=document.querySelector("#message-container");
+  let aantalEmpty =0;
+  array =gameState.board;
 
+  array=array.map(
+    (value,index,array)=>
+    {
+      return array[index].map((value,index,array)=>
+    {
+     if(value.color=='empty')
+     {
+       return 1;
+     }
+        else
+        {
+        return 0;
+        }
+    }).reduce((a, b) =>a + b);});
+
+    if(gameState.winner==true)
+    {
+      messageContainer.textContent="de winnaar is "+gameState.winnerColor;
+    }
+      else if(array=0)
+      {
+        messageContainer.textContent="draw ";
+      }
+        else
+        {
+          messageContainer.textContent="";
+        } 
+  }
 /**
  * resets the gameState and changes index.html correspondingly
  */
@@ -187,17 +219,21 @@ function splitArrayInGroups(array) {
 
   for(let i =0;i<array.length;i++){
     if(array[i]=="yellow"){
-    arrayYellow.push=array[i];
-    array.slice(array[i],1);
 
-    } else if (array[i]=="red"){
-    arrayRed.push=array[i];
-    array.slice(array[i],1);
+      arrayYellow.push=array[i];
+      array.slice(array[i],1);
 
-    } else {
-    arrayEmpty.push=array[i];
-    array.slice(array[i],1);  
-    }
+    } 
+      else if (array[i]=="red")
+      {
+        arrayRed.push=array[i];
+        array.slice(array[i],1);
+      }
+        else 
+        {
+          arrayEmpty.push=array[i];
+          array.slice(array[i],1);  
+        }
   }
 
   array=[arrayYellow,arrayRed,arrayEmpty];
