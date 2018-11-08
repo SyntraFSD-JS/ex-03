@@ -2,6 +2,13 @@
 const htmlBoard = document.querySelector('#board');
 const messageContainer = document.querySelector('#winner-message-container');
 
+/* gameState = hart v spel;
+wordt telkens aangepast na elke move;
+moeten ook altijd dat opvragen */
+
+/* drawBoard: gaat kijken wat er veranderd is en 
+past aan in html */
+
 /**
  * contains all possible colors of our squares
  * @type {{empty: string, red: string, yellow: string}}
@@ -47,8 +54,16 @@ const gameState = {
  * @param {number|string} row -> row index
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
+
 function makeSquareObject(squareColor, squareWinner, col, row) {
+  return {
+      color: squareColor,
+      winner: squareWinner,
+      colIndex: parseInt (col),
+      rowindex: parseInt (row),
+  };
 }
+
 
 /**
  * creates a new board with empty squares (with color empty)
@@ -56,13 +71,13 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
-  var board = array();
+  var board = [];
   for (var i=0; i<7; i++);{
-    var board[i] = new_Array()
-  for (var i=0; i<6; i++){
-    board[i].push;
+    var board[i] = [];
+  for (var j=0; j<6; j++){
+    board[j].push(makeSquareObject(colors.empty, false, i, j));
   }
-    return board;
+  return board;
 }
 
 /**
@@ -74,8 +89,11 @@ function initBoard() {
  * not full
  */
 function initGameState() {
-  data-turn = yellow;
-  initBoard();
+  gameState.turn = colors.yellow;
+  gameState.winner = false;
+  gameState. winnerColor = null;
+  gameState.full = false;
+  gameState.board = initBoard();
   
 }
 
@@ -83,12 +101,13 @@ function initGameState() {
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
-  if (!data-turn = yellow) {
-    return data-turn = red;
-  } else {
-    return data-turn = yellow;
+  if (gameState.turn = yellow) {
+    gameState.turn = red;
+  } else if (gameState.turn = red){
+    gameState.turn = yellow;
   }
-}
+   else gameState.turn = empty;
+  }
 
 /**
  * loop over all squares in the winner Array and
@@ -96,7 +115,15 @@ function changeTurn() {
  * @param winnerArray -> array of squares
  */
 function addWinnerToBoard(winnerArray) {
+  var winnerArray = []; /* wat zit er in winnerArray? 4 squareWinners*/
+    for (i=0; i<4; i++){
+
+    }
 }
+
+
+}
+return gameState.winner = true;
 
 /**
  * returns the index of the first square that is not empty (square.color !== colors.empty)
@@ -112,6 +139,7 @@ function indexOfFirstEmptySquare(squareArray) {
  * (select corresponding element and change with element.dataSet.color and element.dataSet.winner)
  */
 function drawBoard() {
+  /* kijkt naar GameState en pusht/joint met gameStae.board of zoiets*/
 }
 
 /**
