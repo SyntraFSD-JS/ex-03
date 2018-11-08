@@ -114,6 +114,7 @@ function changeTurn() {
  * @param winnerArray -> array of squares
  */
 function addWinnerToBoard(winnerArray) {
+
 }
 
 /**
@@ -154,6 +155,7 @@ function drawBoard() {
 function drawTurn() {
   let turn = document.querySelector("#board");
   turn.dataset.turn=gameState.turn;
+
   //console.log(turn.dataset.turn);
   //console.log(gameState.turn);
    
@@ -166,9 +168,7 @@ function drawTurn() {
  */
 function drawMessage() {
   let messageContainer=document.querySelector("#message-container");
-  let aantalEmpty =0;
-  
-  console.log(fullCheck());
+  //console.log(fullCheck());
 
     if(gameState.winner==true)
     {
@@ -235,6 +235,7 @@ function splitArrayInGroups(array) {
  * @returns {*[]}
  */
 function getWinners(squareArrays) {
+
 }
 
 /**
@@ -318,5 +319,4 @@ function dropStone(event) {
 
 initGameState();
 drawBoard();
-drawMessage();
 htmlBoard.addEventListener('click', dropStone);
