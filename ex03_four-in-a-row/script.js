@@ -48,6 +48,12 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
+  return {
+    color: squareColor,
+    winner: squareWinner,
+    colIndex: parseInt(col),
+    rowIndex: parseInt(row),
+  };
 }
 
 /**
@@ -67,6 +73,11 @@ function initBoard() {
  * not full
  */
 function initGameState() {
+  gameState.turn = colors.yellow;
+  gameState.winner = false;
+  gameState.winnerColor = null;
+  gameState.full = false;
+  gameState.board = initBoard();
 }
 
 /**
