@@ -167,28 +167,14 @@ function drawTurn() {
 function drawMessage() {
   let messageContainer=document.querySelector("#message-container");
   let aantalEmpty =0;
-  array =gameState.board;
-
-  array=array.map(
-    (value,index,array)=>
-    {
-      return array[index].map((value,index,array)=>
-    {
-     if(value.color=='empty')
-     {
-       return 1;
-     }
-        else
-        {
-        return 0;
-        }
-    }).reduce((a, b) =>a + b);});
+  
+  console.log(fullCheck());
 
     if(gameState.winner==true)
     {
       messageContainer.textContent="de winnaar is "+gameState.winnerColor;
     }
-      else if(array=0)
+      else if(fullCheck())
       {
         messageContainer.textContent="draw ";
       }
@@ -286,6 +272,31 @@ function winnerCheck() {
  * Checks if the board is full (no square has color === colors.empty)
  */
 function fullCheck() {
+  array =gameState.board;
+
+  array=array.map(
+    (value,index,array)=>
+    {
+      return array[index].map((value,index,array)=>
+    {
+     if(value.color=='empty')
+     {
+       return 1;
+     }
+        else
+        {
+        return 0;
+        }
+    }).reduce((a, b) =>a + b);}).reduce((a, b) =>a + b);
+
+    //console.log(array);
+
+    if(array==0){
+      return true;
+    }else{
+      return false;
+    }
+
 }
 
 /**
@@ -307,4 +318,5 @@ function dropStone(event) {
 
 initGameState();
 drawBoard();
+drawMessage();
 htmlBoard.addEventListener('click', dropStone);
