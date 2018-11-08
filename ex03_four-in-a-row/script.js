@@ -144,6 +144,7 @@ function drawBoard() {
         velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
       }
   }
+  //console.log(document.querySelector("div .col [data-index='"+1+"']"));
 }
 
 /**
