@@ -48,6 +48,12 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
+  return{
+    color: squareColor,
+    winner: squareWinner,
+    colIndex: parseInt(col),
+    rowIndex: parseInt(row)
+  }
 }
 
 /**
@@ -56,14 +62,15 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
-  let kleurVlakje = document.querySelectorAll(".row");
-    for (let i=0; i<gameSetting["columns"];i++){
-      for (let j=0; i<lgameSetting["row"];j++){
-        kleurVlakje[i][j].dataSet.color = colors["empty"];
-      }
+  let board=[];
+  for (let i=0; i<gameSettings.rows;i++){
+    let array=[];
+    for (let j=0; j<gameSettings.columns;j++){
+        array.push(makeSquareObject(colors.empty, false, i, j));
     }
-
-  
+      board.push(array);
+    }
+  return board;
 }
 
 /**
@@ -75,22 +82,22 @@ function initBoard() {
  * not full
  */
 function initGameState() {
-  initBoard();
-  htmlBoard.dataSet.turn = "yellow";
+  gameState.turn = "yellow";
   gameState.winner = false;
-  gameState.winnerColor = false;
+  gameState.winnerColor = null;
   gameState.full = false;
-  gameState.board = null;
+  gameState.board = initboard();
 }
 
 /**
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
-  if (gameState.turn=="red"){
-    gameState.turn="yellow";
-  }else{
-     gameState.turn="red";
+  if (gameState.turn==colors.red){
+    gameState.turn=colors.yellow;
+    }
+  else{
+     gameState.turn=colors.red;
    }
 }
 
