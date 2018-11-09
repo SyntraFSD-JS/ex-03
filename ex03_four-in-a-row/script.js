@@ -74,7 +74,6 @@ function initBoard() {
       }
     board.push(rowArray);
   }
-  //console.log(board);
   return board;
 }
 
@@ -114,16 +113,25 @@ function changeTurn() {
  * @param winnerArray -> array of squares
  */
 function addWinnerToBoard(winnerArray) {
-
+  winnerArray.forEach(element => {
+    gameState.board[element.colIndex][element.rowIndex].winner=true;
+  });
 }
 
 /**
- * returns the index of the first square that is not empty (square.color !== colors.empty)
+ * returns the index of the first square that is empty (square.color == colors.empty)
  * or false if none are empty
  * @param squareArray
  * @returns {int|boolean}
  */
 function indexOfFirstEmptySquare(squareArray) {
+  squareArray.reduce((emptyIndex, square, index)=>{
+    if(emptyIndex < 0 && square.color === colors.empty){
+      return index;
+    }
+    return emptyIndex;
+  },-1);
+ 
 }
 
 /**
@@ -132,20 +140,20 @@ function indexOfFirstEmptySquare(squareArray) {
  */
 function drawBoard() {
   //let array=[];
-  let rijen = document.querySelectorAll("div .col");
   let minrow = gameSettings.rows-1;
 
   for(let i=0;i<gameSettings.columns;i++){
-    //console.log(rijen[i]);
-    let velden = rijen[i].querySelectorAll("div .row");
-    
+    let rij = document.querySelector("div .col[data-index='"+i+"']");
+    console.log(rij);
+
       for(let j=0;j<gameSettings.rows;j++){
         //console.log(velden[minrow-j]);
-        velden[minrow-j].dataset.color=gameState.board[i][j].color;  
-        velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
+        let velden = rij.querySelector("div .row[data-index='"+j+"']");
+        velden.dataset.color=gameState.board[i][j].color;  
+        velden.dataset.winner=gameState.board[i][j].winner;
       }
   }
-  console.log(document.querySelector("div .col[data-index='"+1+"']"));
+  //console.log(document.querySelector("div .col[data-index='"+1+"']"));
 }
 
 /**
@@ -155,10 +163,6 @@ function drawBoard() {
 function drawTurn() {
   let turn = document.querySelector("#board");
   turn.dataset.turn=gameState.turn;
-
-  //console.log(turn.dataset.turn);
-  //console.log(gameState.turn);
-   
 }
 
 /**
@@ -169,7 +173,6 @@ function drawTurn() {
 function drawMessage() {
   let messageContainer=document.querySelector("#message-container");
   //console.log(fullCheck());
-
     if(gameState.winner==true)
     {
       messageContainer.textContent="de winnaar is "+gameState.winnerColor;
@@ -187,6 +190,9 @@ function drawMessage() {
  * resets the gameState and changes index.html correspondingly
  */
 function resetGame() {
+  initGameState();
+  drawBoard();
+  drawMessage();
 }
 
 /**
@@ -235,7 +241,6 @@ function splitArrayInGroups(array) {
  * @returns {*[]}
  */
 function getWinners(squareArrays) {
-
 }
 
 /**
