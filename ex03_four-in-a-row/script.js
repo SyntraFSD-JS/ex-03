@@ -68,7 +68,7 @@ function initBoard() {
   const board=[];
 
   for(let i=0;i<colCount;i++){
-    rowArray=[]
+    rowArray=[];
       for(let j=0;j<rowCount;j++){
         rowArray.push(makeSquareObject(colors.empty, false, i, j));
       }
@@ -128,7 +128,7 @@ function indexOfFirstEmptySquare(squareArray) {
 
 /**
  * uses the gameState.board to change the data attributes in index.html
- * (select corresponding element and change with element.dataSet.color and element.dataSet.winner)
+ * (select corresponding element and change with element.dataset.color and element.dataset.winner)
  */
 function drawBoard() {
   //let array=[];
@@ -145,7 +145,7 @@ function drawBoard() {
         velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
       }
   }
-  //console.log(document.querySelector("div .col [data-index='"+1+"']"));
+  console.log(document.querySelector("div .col[data-index='"+1+"']"));
 }
 
 /**
