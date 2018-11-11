@@ -144,7 +144,7 @@ function drawBoard() {
 
   for(let i=0;i<gameSettings.columns;i++){
     let rij = document.querySelector("div .col[data-index='"+i+"']");
-    console.log(rij);
+    //console.log(rij);
 
       for(let j=0;j<gameSettings.rows;j++){
         //console.log(velden[minrow-j]);
@@ -255,7 +255,43 @@ function getWinners(squareArrays) {
  * @returns {Array}
  */
 function makeSearchArrays(startColIndex, startRowIndex, colIncrement, rowIncrement) {
-}
+  let arraySearchArray = [];
+
+
+  if(colIncrement>0 && rowIncrement>0){
+    
+    if (!startColIndex>0){
+
+      for(let i=startRowIndex;i<gameSettings.rows;i+=rowIncrement){
+        arraySearchArray.push(gameState.board[i][i]);
+      }
+
+    }else{
+      for(let i=startColIndex;i<gameSettings.columns;i+=colIncrement){
+        arraySearchArray.push(gameState.board[i][i-1]);
+        
+      }
+    }
+  }
+    
+  else if(rowIncrement==0){
+
+    for(let i=startColIndex;i<gameSettings.columns;i+=colIncrement){
+        arraySearchArray.push(gameState.board[i][startRowIndex]);
+    }
+
+  }
+  else if(colIncrement==0){
+
+    for(let i=startRowIndex;i<gameSettings.rows;i+=rowIncrement){
+      arraySearchArray.push(gameState.board[startColIndex][i]);
+    }
+
+  }
+  return arraySearchArray;
+  }
+  
+
 
 /**
  * This function uses makeSearchArrays() to split the board up
@@ -264,6 +300,37 @@ function makeSearchArrays(startColIndex, startRowIndex, colIncrement, rowIncreme
  * @returns {*[]}
  */
 function searchForWinners() {
+let rowArray = [];
+let colArray = [];
+let diagonalColArray = [];
+let diagonalRowArray = [];
+let reverseDiagonalColArray = [];
+let reverseDiagonalRowArray = [];
+
+rowArray.push(gameState.board.map(
+  (value,index)=>
+  { 
+    return makeSearchArrays(index,0,0,1);
+  }));
+
+colArray.push(gameState.board.map(
+  (value,index)=>
+  { 
+    return makeSearchArrays(0,index,1,0);
+  }));
+  
+diagonalColArray.push(gameState.board.map(
+  (value,index)=>
+  {
+     return makeSearchArrays(0,index,1,1)
+  }));
+
+diagonalRowArray.push(gameState.board.map(
+  (value,index)=>{
+     return makeSearchArrays(index+1,0,1,1)
+  }));
+
+console.log(diagonalRowArray);
 }
 
 /**
@@ -294,7 +361,6 @@ function fullCheck() {
         return 0;
         }
     }).reduce((a, b) =>a + b);}).reduce((a, b) =>a + b);
-
     //console.log(array);
 
     if(array==0){
@@ -324,4 +390,5 @@ function dropStone(event) {
 
 initGameState();
 drawBoard();
+searchForWinners();
 htmlBoard.addEventListener('click', dropStone);
