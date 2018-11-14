@@ -241,6 +241,19 @@ function splitArrayInGroups(array) {
  * @returns {*[]}
  */
 function getWinners(squareArrays) {
+let ArrayInGroup=[];
+
+squareArrays.forEach((value,index)=>{
+   value[index].forEach(value=>{
+   ArrayInGroup.push(splitArrayInGroups(squareArrays[i]));
+   });
+});
+
+
+
+
+
+
 }
 
 /**
@@ -307,30 +320,34 @@ let diagonalRowArray = [];
 let reverseDiagonalColArray = [];
 let reverseDiagonalRowArray = [];
 
+//array met alle rijen
 rowArray.push(gameState.board.map(
   (value,index)=>
   { 
     return makeSearchArrays(index,0,0,1);
   }));
 
+//array met alle kolomen 
 colArray.push(gameState.board.map(
   (value,index)=>
   { 
     return makeSearchArrays(0,index,1,0);
   }));
-  
+ 
+//rijen met de diagonalen  
 diagonalColArray.push(gameState.board.map(
   (value,index)=>
   {
-     return makeSearchArrays(0,index,1,1)
+     return makeSearchArrays(0,index,1,1);
   }));
 
+//rijen met de diagonallen
 diagonalRowArray.push(gameState.board.map(
   (value,index)=>{
-     return makeSearchArrays(index+1,0,1,1)
+     return makeSearchArrays(index+1,0,1,1);
   }));
 
-console.log(diagonalRowArray);
+
 }
 
 /**
