@@ -48,12 +48,6 @@ const gameState = {
  * @returns {{color: string, winner: boolean, colIndex: number, rowIndex: number}}
  */
 function makeSquareObject(squareColor, squareWinner, col, row) {
- return{
-   color:squareColor,
-   winner:squareWinner,
-   colIndex:parseInt(col),
-   rowIndex:parseInt(row)
- }
 }
 
 /**
@@ -62,20 +56,6 @@ function makeSquareObject(squareColor, squareWinner, col, row) {
  * @returns {Array} -> board
  */
 function initBoard() {
-  //dubbele lus
-  const rowCount= gameSettings.rows;
-  const colCount=gameSettings.columns;
-  const board=[];
-
-  for(let i=0;i<colCount;i++){
-    rowArray=[]
-      for(let j=0;j<rowCount;j++){
-        rowArray.push(makeSquareObject(colors.empty, false, i, j));
-      }
-    board.push(rowArray);
-  }
-  //console.log(board);
-  return board;
 }
 
 /**
@@ -87,25 +67,12 @@ function initBoard() {
  * not full
  */
 function initGameState() {
-  gameState.turn="yellow";
-  gameState.winner=false;
-  gameState.winnerColor=null;
-  gameState.full=false;
-  gameState.board=initBoard();
 }
 
 /**
  * change gameState.turn (if red then yellow and the other way around)
  */
 function changeTurn() {
-  if (gameState.turn==colors.yellow)
-  {
-    gameState.turn=colors.red;
-  }
-    else
-    {
-      gameState.turn=colors.yellow;
-    }
 }
 
 /**
@@ -114,7 +81,6 @@ function changeTurn() {
  * @param winnerArray -> array of squares
  */
 function addWinnerToBoard(winnerArray) {
-
 }
 
 /**
@@ -131,21 +97,6 @@ function indexOfFirstEmptySquare(squareArray) {
  * (select corresponding element and change with element.dataSet.color and element.dataSet.winner)
  */
 function drawBoard() {
-  //let array=[];
-  let rijen = document.querySelectorAll("div .col");
-  let minrow = gameSettings.rows-1;
-
-  for(let i=0;i<gameSettings.columns;i++){
-    //console.log(rijen[i]);
-    let velden = rijen[i].querySelectorAll("div .row");
-    
-      for(let j=0;j<gameSettings.rows;j++){
-        //console.log(velden[minrow-j]);
-        velden[minrow-j].dataset.color=gameState.board[i][j].color;  
-        velden[minrow-j].dataset.winner=gameState.board[i][j].winner;
-      }
-  }
-  //console.log(document.querySelector("div .col [data-index='"+1+"']"));
 }
 
 /**
@@ -153,12 +104,6 @@ function drawBoard() {
  * (htmlBoard is already defined)
  */
 function drawTurn() {
-  let turn = document.querySelector("#board");
-  turn.dataset.turn=gameState.turn;
-
-  //console.log(turn.dataset.turn);
-  //console.log(gameState.turn);
-   
 }
 
 /**
@@ -167,22 +112,8 @@ function drawTurn() {
  * (messageContainer is already defined)
  */
 function drawMessage() {
-  let messageContainer=document.querySelector("#message-container");
-  //console.log(fullCheck());
+}
 
-    if(gameState.winner==true)
-    {
-      messageContainer.textContent="de winnaar is "+gameState.winnerColor;
-    }
-      else if(fullCheck())
-      {
-        messageContainer.textContent="draw ";
-      }
-        else
-        {
-          messageContainer.textContent="";
-        } 
-  }
 /**
  * resets the gameState and changes index.html correspondingly
  */
@@ -199,32 +130,6 @@ function resetGame() {
  * @returns {Array}
  */
 function splitArrayInGroups(array) {
-
-  let arrayRed=[];
-  let arrayYellow=[];
-  let arrayEmpty=[];
-
-  for(let i =0;i<array.length;i++){
-    if(array[i]=="yellow"){
-
-      arrayYellow.push=array[i];
-      array.slice(array[i],1);
-
-    } 
-      else if (array[i]=="red")
-      {
-        arrayRed.push=array[i];
-        array.slice(array[i],1);
-      }
-        else 
-        {
-          arrayEmpty.push=array[i];
-          array.slice(array[i],1);  
-        }
-  }
-
-  array=[arrayYellow,arrayRed,arrayEmpty];
-  return array;
 }
 
 /**
@@ -235,7 +140,6 @@ function splitArrayInGroups(array) {
  * @returns {*[]}
  */
 function getWinners(squareArrays) {
-
 }
 
 /**
@@ -273,31 +177,6 @@ function winnerCheck() {
  * Checks if the board is full (no square has color === colors.empty)
  */
 function fullCheck() {
-  array =gameState.board;
-
-  array=array.map(
-    (value,index,array)=>
-    {
-      return array[index].map((value,index,array)=>
-    {
-     if(value.color=='empty')
-     {
-       return 1;
-     }
-        else
-        {
-        return 0;
-        }
-    }).reduce((a, b) =>a + b);}).reduce((a, b) =>a + b);
-
-    //console.log(array);
-
-    if(array==0){
-      return true;
-    }else{
-      return false;
-    }
-
 }
 
 /**
